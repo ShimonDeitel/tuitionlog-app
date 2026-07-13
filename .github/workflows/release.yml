@@ -81,6 +81,7 @@ jobs:
           fi
 
       - name: Debug build + install for screenshot capture
+        continue-on-error: true
         run: |
           xcodebuild build \
             -project "$APP_NAME.xcodeproj" \
@@ -95,6 +96,7 @@ jobs:
           sleep 4
 
       - name: Capture + resize screenshots
+        continue-on-error: true
         run: |
           mkdir -p "$RUNNER_TEMP/shots"
           xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot "$RUNNER_TEMP/shots/raw.png"
